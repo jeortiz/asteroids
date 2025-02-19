@@ -38,6 +38,12 @@ def main():
             
         screen.fill('black')
 
+        for shot in shots:
+            for asteroid in asteroids:
+                if asteroid.collidesWith(shot):
+                    asteroid.split()
+                    shot.kill()
+                    
         updatable.update(dt)
 
         for drawy in drawable:
@@ -47,7 +53,7 @@ def main():
             if player.collidesWith(asteroid):
                 print("Game over!")
                 exit()
-
+    
         pygame.display.flip()
 
 if __name__ == "__main__":

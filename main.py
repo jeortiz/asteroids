@@ -10,9 +10,11 @@ def main():
 
     print("Starting asteroids!")
 
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH/2, y=SCREEN_HEIGHT/2)
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -24,8 +26,11 @@ def main():
                 return
             
         screen.fill('black')
-            
-        player.draw(screen)
+        
+        updatable.update(dt)
+
+        for drawy in drawable:
+            drawy.draw(screen)
         
         pygame.display.flip()
 

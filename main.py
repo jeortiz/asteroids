@@ -43,16 +43,17 @@ def main():
                 if asteroid.collidesWith(shot):
                     asteroid.split()
                     shot.kill()
+
+        for asteroid in asteroids:
+            if player.collidesWith(asteroid):
+                print("Game over!")
+                print(f'asteroid {asteroid.id} killed you')
+                exit()
                     
         updatable.update(dt)
 
         for drawy in drawable:
             drawy.draw(screen)
-            
-        for asteroid in asteroids:
-            if player.collidesWith(asteroid):
-                print("Game over!")
-                exit()
     
         pygame.display.flip()
 
